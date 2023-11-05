@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+                rel="stylesheet"
+                href="https://pro.fontawesome.com/releases/v5.15.2/css/all.css"
+        />
+        <title>Document</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            main {
+                display: flex;
+                align-items: center;
+                background: blue;
+            }
+            nav {
+                max-width: 100%;
+                overflow: hidden;
+            }
+            div {
+                width: 100%;
+                display: flex;
+                transition: 0.5s;
+            }
+            img {
+                /* min-width: 50%; */
+                aspect-ratio: 16/9;
+                object-fit: cover;
+            }
+            i {
+                padding: 10px;
+                font-size: 50px;
+                color: #fff;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <i class="fas fa-chevron-left" id="arrowLeft"></i>
+            <nav>
+                <div id="carusel">
+                    <img src="http://thermalinfo.ru/Sets/img/2016/06/Teploprovodnost-teploemkost-KTR-kremniya-risunok.jpg"/>
+                    <img src="https://zoloto21.ru/wp-content/uploads/temperatura-plavlenija-palladija.jpg"/>
+                    <img src="https://www.uqgoptics.com/wp-content/uploads/2020/10/Germanium1-1.jpg"/>
+                    <img src="https://metallolom777.ru/upload/medialibrary/5bf/5bf959e5c429ccebfd39a8490fc78516.jpg"/>
+                </div>
+            </nav>
+            <i class="fas fa-chevron-right" id="arrowRight"></i>
+        </main>
+        <script>
+            let left = document.getElementById("arrowLeft");
+            let right = document.getElementById("arrowRight");
+            let carusel = document.getElementById("carusel");
+
+            const caruselElem = 2;
+            const width = 100 / caruselElem;
+            const item = carusel.children.length - caruselElem;
+            let current = 0;
+
+            for (let i=0; i < carusel.childElementCount; i++)    {
+                carusel.children[i].style.width = width + "%";
+                carusel.children[i].style.maxWidth = width + "%";
+            }  
+
+            left.addEventListener("click", clickLeft);
+            right.addEventListener("click", clickRight); 
+
+            function clickLeft() {
+                current -= 1;
+                if (current >= 0) {
+                    carusel.style.transform = `translateX(-${width * current}%)`;
+                } else {
+                    current = 0;
+                }
+            }
+
+            function clickRight() {
+                current += 1;
+                if (current <= item) {
+                    carusel.style.transform = `translateX(-${width * current}%)`;
+                } else {
+                    current = item;
+                }
+            }
+
+
+
+
+        </script>
+    </body>
+</html>
